@@ -1,0 +1,24 @@
+FROM python:3.7-alpine3.8
+
+# install all necesseary packages
+# RUN apk add --no-cache --virtual .build-deps mariadb-dev ... \
+#     && pip install ...\
+#     && apk add --virtual .runtime-deps mariadb-client-libs \
+#     && apk del .build-deps
+
+RUN apk add --no-cache mariadb-connector-c-dev ;\
+    # apk add --no-cache supervisor ;\
+    apk add --no-cache --virtual .build-deps \
+        build-base \
+        mariadb-dev ;\
+    pip3 install mysqlclient;\
+    pip3 install PySocks; \
+    pip3 install dnspython; \
+    pip3 install yattag; \
+    # pip3 install pyopenssl; \
+    pip3 install supervisor; \
+    pip3 install redis; \
+    pip3 install python-dotenv; \
+    apk del .build-deps
+
+# CMD [ "python", "./my_script.py" ]

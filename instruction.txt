@@ -1,0 +1,25 @@
+Стек:
+- web часть выполнена на пхп (конкретно Фреймворк Laravel, да простят нас за это боги) с применением их плясок с бубном через gulp/nodejs npm
+- основная логика написана на питоне, скрипты крутятся с помощью supervisor'a перезапускаясь раз в н минут (у каждого свое время)
+
+- перед стартом лучше выполнить рябилд UI через команду npm run production
+
+==== run socat ====
+socat TCP-LISTEN:3336,fork,bind=172.18.0.1 TCP:127.0.0.1:3306
+
+===================
+дополнительные твики в docker-compose.yml:
+строка:
+MYSQL_ROOT_PASSWORD: 111222
+заменить пароль на свой
+строка:
+PMA_ABSOLUTE_URI: https://192.168.1.1:9043/pma-mypma/
+заменить IP на свой + в папке ./nginx/site.conf поменять ура для редиректа
+
+===================
+опционально: если охота поменять логин и пароль для самого сайта, то лог и пасс лежат в файле:
+~/code/spam/database/seeds/UsersTableSeeder
+
+
+==== REDIS ON HOST max connection fix ====
+https://serverfault.com/questions/770037/debian-8-4-jessie-set-open-files-limit-for-redis-user
